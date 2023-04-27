@@ -1,21 +1,24 @@
-import React from 'react'
+import React , {useState,useEffect} from 'react'
 import '../styles/App.css';
 import ChildComponent from './ChildComponent';
-const ShowSquare = ({value}) => {
-    return (<p id='output' value={value}>{Math.pow(value,2)}</p>)
-    // return "hello";
-  }
 const App = () => {
  //code here
-const [value, setValue] = React.useState(0);
+ const [input, setInput] = useState("");
+
+  const handleInputChange = (event) => {
+    setInput(event.target.value);
+  };
+
   return (
     <div id="main">
-      <ChildComponent /> 
-       <input id='input' onChange={(e) => {setValue(e.target.value)}}/>
-      <ShowSquare value = {value}/>
+      <ChildComponent> 
+       <input id="input" onChange={handleInputChange} />
+       </ChildComponent>
+    
+      <p id="output">{Number(input)*Number(input)}</p>
     </div>
-  )
-}
+  );
+};
 
 
 export default App;
